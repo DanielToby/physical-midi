@@ -1,0 +1,3 @@
+[submodule "thirdparty/sdf"]
+	path = thirdparty/sdf
+	url = git@github.com:fogleman/sdf.git
