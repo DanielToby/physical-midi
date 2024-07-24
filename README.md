@@ -1,20 +1,12 @@
 # physical-midi
-A CLI to programmatically generate 3D meshes from midi input, for use in a hand-cranked music box.
+A CLI to programmatically generate a music box "reel" (stl file) from midi input, for use in a hand-turned music box.
 
 ## Dependencies
 1. [SDF](https://github.com/fogleman/sdf)https://github.com/fogleman/sdf, a mesh generation library (for constructing the mesh).
 2. [Mido]([url](https://mido.readthedocs.io/en/stable/)https://mido.readthedocs.io/en/stable/), a midi object library (for parsing the input).
 
-## Goals
-1. Provided a cheap music box (they all conform roughly to the same design), remove the cheap set screw that holds the cylinder in place with an M6 equivalent.
-2. Write a Python script that:
-    - programmatically generates the 20mm tall cylinder mesh (constructed along the positive Z axis).
-    - consumes midi files and converts these into a series of `Pin` representations, each consisting of a Z-height and an angle theta.
-    - generates a series of 0.6mm cubic bumps along the exterior of the mesh that strike the tines of the music box.
-3. 3D print the resulting meshes with a material that satisfies the resolution and durability requirements. Formlabs' Rigid 10k Resin for SLA printing achieves the resolution, but rigid resins can be brittle. SLS printing produces very durable parts, but achieving such fine features can be challenging.
-
 ## Examples
-A C major scale as midi input, passed to a music box whose tines form an incomplete A major scale several octaves higher:
+A C major scale as midi input, transposed to accomodate a music box that best matches A major.
 ```bash
 (venv) daniel.toby@US-MA-T2C6V70 physical-midi % python3 generate_cylinder.py -m examples/C-natural_major.mid -f result.stl
 Read midi file. Found 15 notes.
@@ -31,7 +23,7 @@ step 0.05, 0.05, 0.05
 ```
 
 
-A Jazz lick as midi input, whose notes are all supported by the target:
+The Lick as midi input, whose notes are all supported by the target music box:
 ```bash
 (venv) daniel.toby@US-MA-T2C6V70 physical-midi % python3 generate_cylinder.py -m examples/the_licc.midi -f result.stl
 Read midi file. Found 34 notes.
